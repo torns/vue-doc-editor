@@ -271,9 +271,9 @@ export default {
 $colorBlack: #559eff;
 .divider {
   width: 1px;
-  height: 1.25rem;
+  height: 1rem;
   background-color: rgba($colorBlack, 0.1);
-  margin-left: 0.5rem;
-  margin-right: 0.75rem;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
 }
 </style>

@@ -35,13 +35,14 @@ export default {
 
 <style lang="scss" scoped>
 .menu-item {
-  width: 1.75rem;
-  height: 1.75rem;
-  color: #555;
+  width: 1rem;
+  height: 1rem;
+  color: #aaa;
   border: none;
   background-color: transparent;
   border-radius: 0.4rem;
   padding: 0.25rem;
+  font-size: 0.9em;
   margin-right: 0.25rem;
 
   svg {
@@ -52,9 +53,10 @@ export default {
 
   &.is-active,
   &:hover {
-    color: #1677ff;
-    background-color: #eaf3ff;
-    border-color: #eaf3ff;
+    // color: #1677ff;
+    // background-color: #eaf3ff;
+    // border-color: #eaf3ff;
+    color: #111;
   }
 }
 </style>

@@ -1,6 +1,9 @@
 <template>
   <div class="flex-row">
-    {{ content }}
+    <p style="width: 20%">
+      {{ content }}
+    </p>
+
     <div style="width: 80%">
       <DocEditor
         :content.sync="content"
