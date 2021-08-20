@@ -1,0 +1,64 @@
+.ediotr-container {
+  position:relative;
+  .doc-dir {
+    position: fixed;
+  }
+  .user-box {
+  }
+}
+.fixed-header {
+  // position: fixed;
+  // position:absolute;
+  z-index: 999;
+  // top: 51px;
+}
+.collaboration-cursor__caret {
+  position: relative;
+  margin-left: -1px;
+  margin-right: -1px;
+  border-left: 1px solid #0d0d0d;
+  border-right: 1px solid #0d0d0d;
+  word-break: normal;
+  pointer-events: none;
+}
+.collaboration-cursor__label {
+  position: absolute;
+  z-index: 99;
+  top: -1.4em;
+  left: -1px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  user-select: none;
+  color: #0d0d0d;
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px 3px 3px 0;
+  white-space: nowrap;
+}
+.editor__header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+@import "./reset.scss";
+// 1mm等于多少像素
+$paper_size: 0.25rem;
+// 公文用纸天头（上白边）为：37mm±1mm
+// 公文用纸订口（左白边）为：28 mm±1mm
+// 版心尺寸为：156 mm×225mm（不含页码）
+.doc-a4 {
+  max-width: 100%;
+  margin: auto;
+  margin-top: 1em;
+  // width: 210 * $paper_size;
+  // max-height: 297 * $paper_size;
+  // max-height: calc(100vh - 200px);
+  border:1px  solid #f1f1f1;
+  box-sizing: border-box;
+  // padding: 28 * $paper_size 25 * $paper_size;
+  padding: 1em 2em;
+  background: #fff;
+  overflow-y:auto
+}
+
