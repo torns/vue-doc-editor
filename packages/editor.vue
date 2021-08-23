@@ -374,7 +374,7 @@ import {
   useGenerateMultiple,
   useGenerateStatic,
   getRandomElement,
-  handleUpdateHeadings,
+  handleUpdate,
   keysEq,
 } from "./lib/index.js";
 /**
@@ -454,8 +454,8 @@ export default {
   },
   mounted() {
     this.createDocWorkFlow(this.isMultiple);
-    this.editor.on("update", handleUpdateHeadings(this));
-    this.$nextTick(handleUpdateHeadings(this));
+    this.editor.on("update", handleUpdate(this));
+    this.$nextTick(handleUpdate(this));
   },
   components: {
     EditorContent,

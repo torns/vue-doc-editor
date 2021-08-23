@@ -23,6 +23,11 @@
     margin-right: 0.5em;
   }
   ul,
+  .no-edit{
+    position: relative;
+    opacity: 0.9;
+    cursor: not-allowed;
+  }
   ol {
     padding: 0 1rem;
     padding-left: 25px;

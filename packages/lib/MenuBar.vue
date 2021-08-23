@@ -39,10 +39,26 @@ export default {
           type: "divider",
         },
         {
-          icon: "lock-2-line",
-          title: "锁定/解锁",
-          isActive: () => this.editor.isActive("bold"),
-          action: () => this.editor.chain().focus().toggleBold().run(),
+          icon: "eye-line",
+          title: "可读",
+          isActive: () => {
+            return this.editor.isActive({ read: true });
+          },
+          action: () => {
+            const isActive = this.editor.isActive({ read: true });
+            this.editor.chain().focus().setRead(!isActive).run();
+          },
+        },
+        {
+          icon: "edit-box-line",
+          title: "可写",
+          isActive: () => {
+            return this.editor.isActive({ edit: true });
+          },
+          action: () => {
+            const isActive = this.editor.isActive({ edit: true });
+            this.editor.chain().focus().setEdit(!isActive).run();
+          },
         },
         {
           type: "divider",

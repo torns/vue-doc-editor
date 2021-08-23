@@ -1,8 +1,11 @@
 import { Editor } from "@tiptap/vue-2";
 import Collaboration from "@tiptap/extension-collaboration";
 import * as Y from "yjs";
+import hash from "crypto-js/sha1";
 import * as R from "ramda";
 import { WebsocketProvider } from "y-websocket";
+import NodeID from "../extensions/NodeID";
+import Auth from "../extensions/AuthInline";
 import StarterKit from "@tiptap/starter-kit";
 import Table from "@tiptap/extension-table";
 import TableRow from "@tiptap/extension-table-row";
@@ -75,6 +78,8 @@ export const useGenerateMultiple = R.curry(
               allowTableNodeSelection: true,
             }),
             Drawing,
+            NodeID,
+            Auth,
             Link,
             TableRow,
             TableHeader,
@@ -130,6 +135,8 @@ export const useGenerateStatic = R.curry(
               resizable: true,
               allowTableNodeSelection: true,
             }),
+            NodeID,
+            Auth,
             Drawing,
             TableRow,
             TableHeader,
@@ -173,29 +180,51 @@ export const keysEq = keys =>
  *  :todo
  * 更新headings
  */
-export const handleUpdateHeadings = that => () => {
-  const headings = [];
+// export const handleUpdateHeadings = that => () => {
+//   const headings = [];
+//   const transaction = that.editor.state.tr;
+//   that.editor.state.doc.descendants((node, pos) => {
+//     if (node.type.name === "heading") {
+//       const id = `heading-${headings.length + 1}`;
+//       if (node.attrs.id !== id) {
+//         transaction.setNodeMarkup(pos, null, {
+//           ...node.attrs,
+//           id,
+//         });
+//       }
+//       headings.push({
+//         level: node.attrs.level,
+//         text: node.textContent,
+//         id,
+//       });
+//     }
+//   });
+//   that.$emit("update:headings", headings);
+//   transaction.setMeta("preventUpdate", true);
+//   that.editor.view.dispatch(transaction);
+//   console.log(that.editor.getJSON());
+//   that.$emit("update:content", that.editor.getJSON());
+//   return headings;
+// };
+export const handleUpdate = that => () => {
   const transaction = that.editor.state.tr;
-  that.editor.state.doc.descendants((node, pos) => {
-    if (node.type.name === "heading") {
-      const id = `heading-${headings.length + 1}`;
-      if (node.attrs.id !== id) {
-        transaction.setNodeMarkup(pos, null, {
-          ...node.attrs,
-          id,
-        });
-      }
-      headings.push({
-        level: node.attrs.level,
-        text: node.textContent,
-        id,
-      });
-    }
-  });
-  that.$emit("update:headings", headings);
+  // that.editor.state.doc.descendants((node, pos) => {
+  //   if (node.type.name == "text" && !node.marks.length) {
+  //     return;
+  //   }
+  //   if (node.marks.length) {
+  //     console.log(node, transaction);
+  //     transaction.setNodeMarkup(pos, null, {});
+  //   } else {
+  //     transaction.setNodeMarkup(pos, null, {
+  //       ...node.attrs,
+  //       //这里要缓存hash，否则性能很低，有时间在做
+  //       id: `${node.type.name}-${hash(node.textContent)}`,
+  //     });
+  //   }
+  // });
   transaction.setMeta("preventUpdate", true);
   that.editor.view.dispatch(transaction);
-  console.log(that.editor.getJSON());
   that.$emit("update:content", that.editor.getJSON());
-  return headings;
+  that.$emit("update:transaction", transaction);
 };

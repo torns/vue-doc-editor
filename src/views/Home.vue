@@ -8,7 +8,6 @@
       <DocEditor
         :content.sync="content"
         :editor-obj.sync="editor"
-        :headings.sync="headings"
         :multiple="false"
         :editable="editable"
       >
@@ -21,7 +20,6 @@ export default {
   data() {
     return {
       content: "",
-      headings: "",
       editable: true,
       editor: null,
     };

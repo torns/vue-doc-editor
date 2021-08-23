@@ -8,6 +8,7 @@
     "docs:build": "vuepress build docs",
     "serve": "vue-cli-service serve --mode development",
     "build": "vue-cli-service build --mode production",
+    "build:components": "vue-cli-service build --target lib --name index --dest lib packages/index.js",
     "dev": "vue-cli-service serve --mode development",
     "test": "vue-cli-service build --mode test"
   },
@@ -31,6 +32,7 @@
     "@tiptap/starter-kit": "^2.0.0-beta.81",
     "@tiptap/vue-2": "^2.0.0-beta.42",
     "core-js": "^3.6.5",
+    "crypto-js": "^4.1.1",
     "d3": "^7.0.0",
     "element-tiptap": "^1.26.2",
     "esbuild-loader": "^2.15.0",
