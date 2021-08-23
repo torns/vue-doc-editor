@@ -2,350 +2,6 @@
   <div class="w-p-100 ediotr-container">
     <div class="flex-al p-20 border-box al-start w-p-100 m-t-100">
       <div class="w-p-100 fixed-header">
-        <div class="w-p-100 bg-fff border-box line-b p-10 j-sb flex-row al-c">
-          <slot name="header" class="flex-row al-c"> </slot>
-          <div class="flex-row al-c user-box">
-            <AvatarRow
-              :users="debug(users)"
-              v-if="editor && isMultiple && editable"
-            />
-            <div
-              class="editor__footer"
-              v-if="false && editor && isMultiple && editable"
-            >
-              <div :class="`editor__status editor__status--${status}`">
-                <template v-if="status === 'connected'">
-                  {{ users.length }} 个用户在线 {{ currentRoom }}
-                </template>
-                <template v-else> 已离线 </template>
-              </div>
-              <div class="editor__name">
-                <button @click="setName">
-                  {{ currentUser.name }}
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="flex-row flex-wrap m-b-20" v-if="false">
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().toggleBold().run()"
-            :class="{ 'is-active': editor.isActive('bold') }"
-            >加粗</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().toggleItalic().run()"
-            :class="{ 'is-active': editor.isActive('italic') }"
-            >斜体</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().toggleStrike().run()"
-            :class="{ 'is-active': editor.isActive('strike') }"
-            >删除线</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().toggleHighlight().run()"
-            :class="{ 'is-active': editor.isActive('highlight') }"
-            >高亮</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().setTextAlign('left').run()"
-            :class="{ 'is-active': editor.isActive({ textAlign: 'left' }) }"
-            >左对其</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().setTextAlign('center').run()"
-            :class="{ 'is-active': editor.isActive({ textAlign: 'center' }) }"
-            >中间对其</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().setTextAlign('right').run()"
-            :class="{ 'is-active': editor.isActive({ textAlign: 'right' }) }"
-            >右对齐</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().setTextAlign('justify').run()"
-            :class="{ 'is-active': editor.isActive({ textAlign: 'justify' }) }"
-            >两端对齐</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().toggleCode().run()"
-            :class="{ 'is-active': editor.isActive('code') }"
-            >标记文本</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().unsetAllMarks().run()"
-            >清理外观</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().clearNodes().run()"
-            >清理结构</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().setParagraph().run()"
-            :class="{ 'is-active': editor.isActive('paragraph') }"
-            >段落</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
-            :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }"
-            >h1</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
-            :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }"
-            >h2</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
-            :class="{ 'is-active': editor.isActive('heading', { level: 3 }) }"
-            >h3</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().toggleHeading({ level: 4 }).run()"
-            :class="{ 'is-active': editor.isActive('heading', { level: 4 }) }"
-            >h4</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().toggleHeading({ level: 5 }).run()"
-            :class="{ 'is-active': editor.isActive('heading', { level: 5 }) }"
-            >h5</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().toggleHeading({ level: 6 }).run()"
-            :class="{ 'is-active': editor.isActive('heading', { level: 6 }) }"
-            >h6</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().toggleBulletList().run()"
-            :class="{ 'is-active': editor.isActive('bulletList') }"
-            >无序列表</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().toggleOrderedList().run()"
-            :class="{ 'is-active': editor.isActive('orderedList') }"
-            >有序列表</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().toggleCodeBlock().run()"
-            :class="{ 'is-active': editor.isActive('codeBlock') }"
-            >设为代码</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().toggleBlockquote().run()"
-            :class="{ 'is-active': editor.isActive('blockquote') }"
-            >引用</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().setHorizontalRule().run()"
-            >分割线</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().setHardBreak().run()"
-            >换行</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().undo().run()"
-            >撤销</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().redo().run()"
-            >重做</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="
-              editor
-                .chain()
-                .focus()
-                .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
-                .run()
-            "
-            >插入表格</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().addColumnBefore().run()"
-            :disabled="!editor.can().addColumnBefore()"
-            >在前面插入列</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().addColumnAfter().run()"
-            :disabled="!editor.can().addColumnAfter()"
-            >在后面插入列</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().deleteColumn().run()"
-            :disabled="!editor.can().deleteColumn()"
-            >删除列</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().addRowBefore().run()"
-            :disabled="!editor.can().addRowBefore()"
-            >在前面插入行</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().addRowAfter().run()"
-            :disabled="!editor.can().addRowAfter()"
-            >在后面插入行</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().deleteRow().run()"
-            :disabled="!editor.can().deleteRow()"
-            >删除行</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().deleteTable().run()"
-            :disabled="!editor.can().deleteTable()"
-            >删除表格</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().mergeCells().run()"
-            :disabled="!editor.can().mergeCells()"
-            >合并单元格</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().splitCell().run()"
-            :disabled="!editor.can().splitCell()"
-            >撤销合并</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().toggleHeaderColumn().run()"
-            :disabled="!editor.can().toggleHeaderColumn()"
-            >设为标题列</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().toggleHeaderRow().run()"
-            :disabled="!editor.can().toggleHeaderRow()"
-            >设为标题行</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().toggleHeaderCell().run()"
-            :disabled="!editor.can().toggleHeaderCell()"
-            >设为标题单元格</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().mergeOrSplit().run()"
-            :disabled="!editor.can().mergeOrSplit()"
-            >合并单元格(1个按钮)</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="
-              editor
-                .chain()
-                .focus()
-                .setCellAttribute('backgroundColor', '#FAF594')
-                .run()
-            "
-            :disabled="
-              !editor.can().setCellAttribute('backgroundColor', '#FAF594')
-            "
-            >设置单元格样式</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().fixTables().run()"
-            :disabled="!editor.can().fixTables()"
-            >修复表格</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().goToNextCell().run()"
-            :disabled="!editor.can().goToNextCell()"
-            >到下一格</el-button
-          >
-          <el-button
-            plain
-            size="mini"
-            @click="editor.chain().focus().goToPreviousCell().run()"
-            :disabled="!editor.can().goToPreviousCell()"
-            >到上一个格</el-button
-          >
-          <el-button plain size="mini" @click="addImage">添加图片</el-button>
-          <el-button plain size="mini" @click="addDraw">添加画板</el-button>
-        </div>
         <div class="w-p-100 flex-al al-c bg-fff line-b p-10 border-box">
           <MenuBar
             class="editor__header"
@@ -361,6 +17,13 @@
           class="p-b-20"
         />
         <editor-content :editor="editor" v-else class="p-b-20" />
+      </div>
+      <div class="flex-row al-c head-box" v-if="focused">
+        <div
+          class="head"
+          :style="{ backgroundImage: 'url(' + user.head + ')' }"
+        ></div>
+        <span class="username">{{ user.lable }}</span>
       </div>
     </div>
   </div>
@@ -389,6 +52,9 @@ export default {
   props: {
     editorObj: "",
     headings: "",
+    roles: {},
+    user: {},
+
     multiple: {
       type: [Boolean, Object],
       default() {
@@ -464,6 +130,7 @@ export default {
   },
   data() {
     return {
+      focused: false,
       editor: null,
       provider: null,
       indexdb: null,

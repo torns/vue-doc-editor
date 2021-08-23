@@ -39,25 +39,28 @@ export default {
           type: "divider",
         },
         {
-          icon: "eye-line",
-          title: "可读",
+          icon: "eye-off-line",
+          title: "禁止读",
           isActive: () => {
-            return this.editor.isActive({ read: true });
+            return this.editor.isActive("readdisable");
           },
           action: () => {
-            const isActive = this.editor.isActive({ read: true });
-            this.editor.chain().focus().setRead(!isActive).run();
+            // const isActive = this.editor.isActive({ read: true });
+            // this.editor.chain().focus().setRead(!isActive).run();
+
+            this.editor.chain().focus().toggleReadDisable().run();
           },
         },
         {
-          icon: "edit-box-line",
-          title: "可写",
+          icon: "edit-circle-line",
+          title: "禁止写",
           isActive: () => {
-            return this.editor.isActive({ edit: true });
+            return this.editor.isActive("writedisable");
           },
           action: () => {
-            const isActive = this.editor.isActive({ edit: true });
-            this.editor.chain().focus().setEdit(!isActive).run();
+            // const isActive = this.editor.isActive({ read: true });
+            // this.editor.chain().focus().setRead(!isActive).run();
+            this.editor.chain().focus().toggleWriteDisable().run();
           },
         },
         {

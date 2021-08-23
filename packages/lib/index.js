@@ -4,8 +4,10 @@ import * as Y from "yjs";
 import hash from "crypto-js/sha1";
 import * as R from "ramda";
 import { WebsocketProvider } from "y-websocket";
-import NodeID from "../extensions/NodeID";
-import Auth from "../extensions/AuthInline";
+// import NodeID from "../extensions/NodeID";
+import ReadableMark from "../extensions/ReadableMark";
+import Writeable from "../extensions/Writeable";
+
 import StarterKit from "@tiptap/starter-kit";
 import Table from "@tiptap/extension-table";
 import TableRow from "@tiptap/extension-table-row";
@@ -78,8 +80,10 @@ export const useGenerateMultiple = R.curry(
               allowTableNodeSelection: true,
             }),
             Drawing,
-            NodeID,
-            Auth,
+            // NodeID,
+
+            ReadableMark,
+            Writeable,
             Link,
             TableRow,
             TableHeader,
@@ -108,6 +112,14 @@ export const useGenerateMultiple = R.curry(
             }),
             Highlight,
           ],
+          onFocus: () => {
+            console.log("focus");
+            that.focused = true;
+          },
+          onBlur: () => {
+            console.log("onBlur");
+            that.focused = false;
+          },
           content: "",
         })
       );
@@ -135,8 +147,10 @@ export const useGenerateStatic = R.curry(
               resizable: true,
               allowTableNodeSelection: true,
             }),
-            NodeID,
-            Auth,
+            // NodeID,
+            ReadableMark,
+            Writeable,
+            Link,
             Drawing,
             TableRow,
             TableHeader,
@@ -154,6 +168,14 @@ export const useGenerateStatic = R.curry(
             }),
             Highlight,
           ],
+          onFocus: () => {
+            console.log("focus");
+            that.focused = true;
+          },
+          onBlur: () => {
+            console.log("onBlur");
+            that.focused = false;
+          },
           content,
         })
       );
@@ -208,21 +230,6 @@ export const keysEq = keys =>
 // };
 export const handleUpdate = that => () => {
   const transaction = that.editor.state.tr;
-  // that.editor.state.doc.descendants((node, pos) => {
-  //   if (node.type.name == "text" && !node.marks.length) {
-  //     return;
-  //   }
-  //   if (node.marks.length) {
-  //     console.log(node, transaction);
-  //     transaction.setNodeMarkup(pos, null, {});
-  //   } else {
-  //     transaction.setNodeMarkup(pos, null, {
-  //       ...node.attrs,
-  //       //这里要缓存hash，否则性能很低，有时间在做
-  //       id: `${node.type.name}-${hash(node.textContent)}`,
-  //     });
-  //   }
-  // });
   transaction.setMeta("preventUpdate", true);
   that.editor.view.dispatch(transaction);
   that.$emit("update:content", that.editor.getJSON());

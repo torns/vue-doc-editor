@@ -15,16 +15,32 @@ const types = [
 const NodeID = Extension.create({
   name: "nodeId",
   defaultOptions: {
-    types, //哪些可以使用
+    HTMLAttributes: {
+      id: null,
+    },
+    // types, //哪些可以使用
   },
   addGlobalAttributes() {
     return [
       {
-        // Extend the following extensions
-        types,
+        types: types,
         attributes: {
           id: {
-            default: null,
+            default: 1221,
+            parseHTML: element => {
+              return {
+                color: element.style.color.replace(/['"]+/g, ""),
+              };
+            },
+            renderHTML: attributes => {
+              if (!attributes.color) {
+                return {};
+              }
+
+              return {
+                style: `color: ${attributes.color}`,
+              };
+            },
           },
         },
       },
