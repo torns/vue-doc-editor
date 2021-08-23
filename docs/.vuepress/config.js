@@ -43,5 +43,6 @@ const config = {
   markdown: {
     lineNumbers: true,
   },
+  dest: path.resolve(__dirname, "../../doc-build"),
 };
 module.exports = config;
