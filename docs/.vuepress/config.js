@@ -33,6 +33,7 @@ const themeConfig = {
 //html header
 const head = [];
 const config = {
+  base: "/vue-doc-editor/",
   lang: "zh-CN",
   title: "vue-doc-editor",
   description: "基于vue2.0的文档编辑器",
