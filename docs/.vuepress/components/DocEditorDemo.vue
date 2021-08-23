@@ -14,8 +14,8 @@
 import("remixicon/fonts/remixicon.css");
 import Vue from "vue";
 export default {
-  created() {
-    window.global = window;
+  mounted() {
+    // window.global = window;
     import(/* webpackChunkName: "packages" */ "../../../packages").then((m) => {
       Vue.use(m.default);
       this.syncLoadEd = true;
