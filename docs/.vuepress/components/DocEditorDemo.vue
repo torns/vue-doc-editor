@@ -4,7 +4,7 @@
       :content.sync="content"
       :editor-obj.sync="editor"
       :headings.sync="headings"
-      :multiple="multiple"
+      :multiple="false"
       :editable="editable"
     >
     </DocEditor>
