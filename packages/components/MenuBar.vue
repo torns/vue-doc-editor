@@ -73,6 +73,12 @@ export default {
           isActive: () => this.editor.isActive("bold"),
         },
         {
+          icon: "underline",
+          title: "下划线",
+          action: () => this.editor.chain().focus().toggleUnderline().run(),
+          isActive: () => this.editor.isActive("underline"),
+        },
+        {
           icon: "italic",
           title: "斜体",
           action: () => this.editor.chain().focus().toggleItalic().run(),
@@ -287,12 +293,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$colorBlack: #559eff;
+$colorBlack: #4741b8;
 .divider {
   width: 1px;
   height: 1rem;
   background-color: rgba($colorBlack, 0.1);
-  margin-left: 0.2em;
-  margin-right: 0.2em;
+  margin: 0 1rem;
 }
 </style>

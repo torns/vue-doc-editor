@@ -18,21 +18,13 @@
         />
         <editor-content :editor="editor" v-else class="p-b-20" />
       </div>
-      <div class="flex-row al-c head-box" v-if="focused">
-        <div
-          class="head"
-          :style="{ backgroundImage: 'url(' + user.head + ')' }"
-        ></div>
-        <span class="username">{{ user.lable }}</span>
-      </div>
     </div>
   </div>
 </template>
 <script>
 import * as R from "ramda";
 import { EditorContent } from "@tiptap/vue-2";
-import MenuBar from "./lib/MenuBar.vue";
-import AvatarRow from "./lib/AvatarRow";
+import MenuBar from "./components/MenuBar.vue";
 import {
   useGenerateMultiple,
   useGenerateStatic,
@@ -126,7 +118,6 @@ export default {
   components: {
     EditorContent,
     MenuBar,
-    AvatarRow,
   },
   data() {
     return {

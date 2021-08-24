@@ -32,31 +32,26 @@ export default {
   },
 };
 </script>
-
 <style lang="scss" scoped>
 .menu-item {
-  width: 1rem;
-  height: 1rem;
-  color: #aaa;
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: rgba(#000, 0.05);
+  color: rgba(#000, 0.7);
+  text-align: center;
+  line-height: 1.5rem;
   border: none;
-  background-color: transparent;
-  border-radius: 0.4rem;
-  padding: 0.25rem;
-  font-size: 0.9em;
-  margin-right: 0.25rem;
-
-  svg {
-    width: 100%;
-    height: 100%;
-    fill: currentColor;
-  }
-
+  border-radius: 5rem;
+  font-size: 0.8rem;
+  display: inline-block;
+  margin: 0.1rem;
+  padding: 0;
   &.is-active,
   &:hover {
-    // color: #1677ff;
-    // background-color: #eaf3ff;
-    // border-color: #eaf3ff;
-    color: #111;
+    opacity: 1;
+    color: #4741b8;
+    background: rgba(#766fff, 0.1);
   }
 }
 </style>
