@@ -1,7 +1,9 @@
 import ReadableMark from "./ReadableMark";
-import WriteableMark from "./WriteableMark";
+import WriteDisableMark from "./WriteDisableMark";
+import WriteAbleMark from "./WriteAbleMark";
 import UnderLineMark from "./UnderLineMark";
 import DrawingNode from "./DrawingNode";
+import GlobalDragHandle from "./GlobalDragHandle";
 import Table from "@tiptap/extension-table";
 import Collaboration from "@tiptap/extension-collaboration";
 import TableRow from "@tiptap/extension-table-row";
@@ -43,7 +45,8 @@ const TableCellEd = TableCell.extend({
 export {
   DrawingNode,
   ReadableMark,
-  WriteableMark,
+  WriteDisableMark,
+  WriteAbleMark,
   UnderLineMark,
   Collaboration,
   Table,
@@ -64,13 +67,15 @@ export {
 };
 export const extensions = [
   StarterKit,
+  // GlobalDragHandle,
   Table.configure({
     resizable: true,
     allowTableNodeSelection: true,
   }),
   DrawingNode,
   ReadableMark,
-  WriteableMark,
+  WriteDisableMark,
+  WriteAbleMark,
   UnderLineMark,
   Link,
   TableRow,

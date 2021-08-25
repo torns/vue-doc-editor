@@ -1,4 +1,4 @@
-import DocEditor from "./editor";
+import DocEditor from "./index.vue";
 export { DocEditor };
 // 判断是否是直接引入文件
 if (typeof window !== "undefined" && window.Vue) {

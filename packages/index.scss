@@ -74,6 +74,24 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+.global-drag-handle {
+  position: absolute;
+
+  &::after {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1.25rem;
+    content: '⠿';
+    font-weight: 700;
+    cursor: grab;
+    background: #0D0D0D10;
+    color: #0D0D0D50;
+    border-radius: 0.25rem;
+  }
+}
+
 // 1mm等于多少像素
 $paper_size: 0.25rem;
 // 公文用纸天头（上白边）为：37mm±1mm
@@ -105,7 +123,8 @@ $paper_size: 0.25rem;
   }
 
   .ProseMirror-selectednode {
-    outline: 3px solid #333;
+    outline: 3px solid rgba(#4741b8, 0.1);
+    border-radius: 1em;
   }
 
   readdisable {
@@ -114,10 +133,13 @@ $paper_size: 0.25rem;
   }
 
   writedisable {
-    // opacity: 1;
-    // background-color: #0095f2;
-    color: red;
+    color: rgba(#000,0.5);
     cursor: not-allowed;
+    writeable{
+      color: #000;
+      outline: none;
+      text-decoration: underline;
+    }
   }
 
   underline {

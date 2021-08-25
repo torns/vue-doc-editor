@@ -1,6 +1,7 @@
 import { Extension } from "@tiptap/core";
 import { Plugin, PluginKey } from "prosemirror-state";
 const pluginKey = new PluginKey("IDPlugin");
+const nodes = [];
 const IDPlugin = Extension.create({
   name: "IDPlugin",
   addProseMirrorPlugins: function () {
@@ -8,8 +9,10 @@ const IDPlugin = Extension.create({
     return [
       new Plugin({
         key: pluginKey,
-        appendTransaction: (transactions, oldState, newState) => {
-          console.log("状态改变");
+        props: {
+          handleClickOn(that, view, pos, node, nodePos, event, direct) {
+            // console.log({ that, view, pos, node, nodePos, event, direct });
+          },
         },
       }),
     ];

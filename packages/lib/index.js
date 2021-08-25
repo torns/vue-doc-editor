@@ -4,6 +4,7 @@ import * as Y from "yjs";
 import * as R from "ramda";
 import { WebsocketProvider } from "y-websocket";
 import { IndexeddbPersistence } from "y-indexeddb";
+import { IDPlugin } from "../plugins";
 /**
  * useGenerateMultiple 生成多人在线文档
  * @param {{(fn:any)}} effect 副作用函数，改变外部组件数据
@@ -67,7 +68,7 @@ export const useGenerateStatic = R.curry(
       const editor = new Editor(
         useBeforeHooksAndBack({
           editable,
-          extensions: [...extensions],
+          extensions: [...extensions, IDPlugin],
           onFocus: () => {
             that.focused = true;
           },
@@ -95,7 +96,11 @@ export const getRandomElement = list =>
  */
 export const keysEq = keys =>
   R.compose(R.equals(0), R.length, R.difference(keys), R.keys);
-
+/**
+ * 钩子函数，内容改变
+ * @param {*} that
+ * @returns
+ */
 export const handleUpdate = that => () => {
   const transaction = that.editor.state.tr;
   transaction.setMeta("preventUpdate", true);

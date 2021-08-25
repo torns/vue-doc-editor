@@ -1,39 +1,40 @@
 //禁止读标签
 import { Mark, mergeAttributes } from "@tiptap/core";
 export default Mark.create({
-  name: "writedisable",
+  name: "writeable",
+
   defaultOptions: {
-    id: null,
     HTMLAttributes: {
-      contenteditable: false,
+      contenteditable: true,
+      id: null,
     },
   },
-  priority: 1000,
-
-  parseHTML() {
-    // const {
-    //   options: { who },
-    // } = this;
-    // console.log(who);
-
-    return [{ tag: "writedisable" }];
+  addAttributes() {
+    return {
+      id: null,
+    };
   },
-  renderHTML({ HTMLAttributes }) {
-    const {
-      options: { id },
-    } = this;
+  priority: 1000,
+  parseHTML() {
+    return [{ tag: "writeable" }];
+  },
+  renderHTML(e) {
+    const { HTMLAttributes } = e;
     return [
-      "writedisable",
+      "writeable",
       mergeAttributes(this.options.HTMLAttributes, HTMLAttributes),
       0,
     ];
   },
-
-  addCommands() {
+  addCommands(e) {
     return {
-      //切换可读性
-      toggleWriteDisable: () => ({ commands }) => {
-        return commands.toggleMark("writedisable");
+      toggleWriteAble: id => ({ commands, editor }) => {
+        const isActive = editor.isActive("writeable");
+        if (isActive) {
+          return commands.unsetMark("writeable");
+        } else {
+          return commands.setMark("writeable", { id });
+        }
       },
     };
   },

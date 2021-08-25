@@ -6,15 +6,12 @@
     </template>
   </div>
 </template>
-
 <script>
 import MenuItem from "./MenuItem.vue";
-
 export default {
   components: {
     MenuItem,
   },
-
   props: {
     editor: {
       type: Object,
@@ -35,9 +32,9 @@ export default {
           title: "重做",
           action: () => this.editor.chain().focus().redo().run(),
         },
-        {
-          type: "divider",
-        },
+        // {
+        //   type: "divider",
+        // },
         {
           icon: "eye-off-line",
           title: "禁止读",
@@ -45,10 +42,11 @@ export default {
             return this.editor.isActive("readdisable");
           },
           action: () => {
-            // const isActive = this.editor.isActive({ read: true });
-            // this.editor.chain().focus().setRead(!isActive).run();
-
-            this.editor.chain().focus().toggleReadDisable().run();
+            this.editor
+              .chain()
+              .focus()
+              .toggleReadDisable(Number(new Date()))
+              .run();
           },
         },
         {
@@ -58,14 +56,30 @@ export default {
             return this.editor.isActive("writedisable");
           },
           action: () => {
-            // const isActive = this.editor.isActive({ read: true });
-            // this.editor.chain().focus().setRead(!isActive).run();
-            this.editor.chain().focus().toggleWriteDisable().run();
+            this.editor
+              .chain()
+              .focus()
+              .toggleWriteDisable(Number(new Date()))
+              .run();
           },
         },
         {
-          type: "divider",
+          icon: "edit-circle-line",
+          title: "允许写",
+          isActive: () => {
+            return this.editor.isActive("writeable");
+          },
+          action: () => {
+            this.editor
+              .chain()
+              .focus()
+              .toggleWriteAble(Number(new Date()))
+              .run();
+          },
         },
+        // {
+        //   type: "divider",
+        // },
         {
           icon: "bold",
           title: "加粗",
@@ -102,9 +116,9 @@ export default {
           action: () => this.editor.chain().focus().toggleHighlight().run(),
           isActive: () => this.editor.isActive("highlight"),
         },
-        {
-          type: "divider",
-        },
+        // {
+        //   type: "divider",
+        // },
         {
           icon: "align-left",
           title: "左对齐",
@@ -131,9 +145,9 @@ export default {
             this.editor.chain().focus().setTextAlign("justify").run(),
           isActive: () => this.editor.isActive({ textAlign: "justify" }),
         },
-        {
-          type: "divider",
-        },
+        // {
+        //   type: "divider",
+        // },
         {
           icon: "h-1",
           title: "一级标题",
@@ -206,9 +220,9 @@ export default {
           action: () => this.editor.chain().focus().toggleCodeBlock().run(),
           isActive: () => this.editor.isActive("codeBlock"),
         },
-        {
-          type: "divider",
-        },
+        // {
+        //   type: "divider",
+        // },
         {
           icon: "table-2",
           title: "表格",
@@ -272,9 +286,9 @@ export default {
           title: "分割线",
           action: () => this.editor.chain().focus().setHorizontalRule().run(),
         },
-        {
-          type: "divider",
-        },
+        // {
+        //   type: "divider",
+        // },
         {
           icon: "text-wrap",
           title: "换行",

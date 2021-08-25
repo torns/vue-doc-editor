@@ -2,25 +2,19 @@
 import { Mark, mergeAttributes } from "@tiptap/core";
 export default Mark.create({
   name: "readdisable",
-  inline: true,
-  content: "text*",
-  atom: true,
-  selectable: true,
-  draggable: true,
-  allowGapCursor: false,
+
   defaultOptions: {
     HTMLAttributes: {
-      id: 11,
+      id: null,
     },
   },
   addAttributes() {
     return {
-      id: "11",
+      id: null,
     };
   },
   priority: 1000,
   parseHTML() {
-    console.log("parseHTML");
     return [{ tag: "readdisable" }];
   },
   renderHTML(e) {
@@ -31,10 +25,15 @@ export default Mark.create({
       0,
     ];
   },
-  addCommands() {
+  addCommands(e) {
     return {
-      toggleReadDisable: () => ({ commands }) => {
-        return commands.toggleMark("readdisable");
+      toggleReadDisable: id => ({ commands, editor }) => {
+        const isActive = editor.isActive("readdisable");
+        if (isActive) {
+          return commands.unsetMark("readdisable");
+        } else {
+          return commands.setMark("readdisable", { id });
+        }
       },
     };
   },
