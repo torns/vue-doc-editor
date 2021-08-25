@@ -32,53 +32,48 @@ export default {
           title: "重做",
           action: () => this.editor.chain().focus().redo().run(),
         },
+
         // {
-        //   type: "divider",
+        //   icon: "eye-off-line",
+        //   title: "禁止读",
+        //   isActive: () => {
+        //     return this.editor.isActive("readdisable");
+        //   },
+        //   action: () => {
+        //     this.editor
+        //       .chain()
+        //       .focus()
+        //       .toggleReadDisable(Number(new Date()))
+        //       .run();
+        //   },
         // },
-        {
-          icon: "eye-off-line",
-          title: "禁止读",
-          isActive: () => {
-            return this.editor.isActive("readdisable");
-          },
-          action: () => {
-            this.editor
-              .chain()
-              .focus()
-              .toggleReadDisable(Number(new Date()))
-              .run();
-          },
-        },
-        {
-          icon: "edit-circle-line",
-          title: "禁止写",
-          isActive: () => {
-            return this.editor.isActive("writedisable");
-          },
-          action: () => {
-            this.editor
-              .chain()
-              .focus()
-              .toggleWriteDisable(Number(new Date()))
-              .run();
-          },
-        },
-        {
-          icon: "edit-circle-line",
-          title: "允许写",
-          isActive: () => {
-            return this.editor.isActive("writeable");
-          },
-          action: () => {
-            this.editor
-              .chain()
-              .focus()
-              .toggleWriteAble(Number(new Date()))
-              .run();
-          },
-        },
         // {
-        //   type: "divider",
+        //   icon: "edit-circle-line",
+        //   title: "禁止写",
+        //   isActive: () => {
+        //     return this.editor.isActive("writedisable");
+        //   },
+        //   action: () => {
+        //     this.editor
+        //       .chain()
+        //       .focus()
+        //       .toggleWriteDisable(Number(new Date()))
+        //       .run();
+        //   },
+        // },
+        // {
+        //   icon: "edit-circle-line",
+        //   title: "允许写",
+        //   isActive: () => {
+        //     return this.editor.isActive("writeable");
+        //   },
+        //   action: () => {
+        //     this.editor
+        //       .chain()
+        //       .focus()
+        //       .toggleWriteAble(Number(new Date()))
+        //       .run();
+        //   },
         // },
         {
           icon: "bold",
@@ -269,7 +264,7 @@ export default {
           title: "签名",
           action: () => {
             this.editor.commands.insertContent(
-              `<drawing data-type="drawing"></drawing>`
+              `<drawing data-type="drawing"></drawing><br/>`
             );
           },
           isActive: false,

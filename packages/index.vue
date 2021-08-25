@@ -9,8 +9,15 @@
             v-if="editor && editable"
           />
         </div>
+        <div class="w-p-100 flex-al al-c bg-fff line-b p-10 border-box">
+          <MarkBar
+            class="editor__header"
+            :editor="editor"
+            v-if="editor && editable"
+          />
+        </div>
       </div>
-      <div class="doc-a4 m-t-15 m-b-20 m-l-20">
+      <div class="doc-a4 m-b-20 m-l-20">
         <editor-content
           :editor="editor"
           v-if="editor && isMultiple"
@@ -24,7 +31,12 @@
 <script>
 import * as R from "ramda";
 import { EditorContent } from "@tiptap/vue-2";
-import MenuBar from "./components/MenuBar.vue";
+import MenuBar from "./components/MenuBar";
+import MarkBar from "./components/MarkBar";
+import Button from "ant-design-vue/lib/button";
+import "ant-design-vue/lib/button/style/css";
+// import Vue from "vue";
+// Vue.use(Antd);
 import {
   useGenerateMultiple,
   useGenerateStatic,
@@ -118,6 +130,7 @@ export default {
   components: {
     EditorContent,
     MenuBar,
+    MarkBar,
   },
   data() {
     return {

@@ -1,6 +1,5 @@
 <template>
   <div style="margin-bottom: 3em" v-if="syncLoadEd">
-    <p>{{ content }}</p>
     <DocEditor
       :content.sync="content"
       :editor-obj.sync="editor"
@@ -11,6 +10,7 @@
       :user="user"
     >
     </DocEditor>
+    <p>{{ content }}</p>
   </div>
 </template>
 <script>
