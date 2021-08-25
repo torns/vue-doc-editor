@@ -35,8 +35,7 @@ import MenuBar from "./components/MenuBar";
 import MarkBar from "./components/MarkBar";
 import Button from "ant-design-vue/lib/button";
 import "ant-design-vue/lib/button/style/css";
-// import Vue from "vue";
-// Vue.use(Antd);
+
 import {
   useGenerateMultiple,
   useGenerateStatic,
