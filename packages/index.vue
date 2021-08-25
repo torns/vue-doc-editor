@@ -33,8 +33,8 @@ import * as R from "ramda";
 import { EditorContent } from "@tiptap/vue-2";
 import MenuBar from "./components/MenuBar";
 import MarkBar from "./components/MarkBar";
-import Button from "ant-design-vue/lib/button";
-import "ant-design-vue/lib/button/style/css";
+// import Button from "ant-design-vue/lib/button";
+// import "ant-design-vue/lib/button/style/css";
 
 import {
   useGenerateMultiple,
