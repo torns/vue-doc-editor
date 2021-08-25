@@ -29,13 +29,12 @@
   </div>
 </template>
 <script>
+import("remixicon/fonts/remixicon.css");
 import * as R from "ramda";
 import { EditorContent } from "@tiptap/vue-2";
 import MenuBar from "./components/MenuBar";
 import MarkBar from "./components/MarkBar";
-// import Button from "ant-design-vue/lib/button";
-// import "ant-design-vue/lib/button/style/css";
-
+import "./style/theme/index.css";
 import {
   useGenerateMultiple,
   useGenerateStatic,
@@ -55,9 +54,6 @@ export default {
   props: {
     editorObj: "",
     headings: "",
-    roles: {},
-    user: {},
-
     multiple: {
       type: [Boolean, Object],
       default() {
@@ -121,6 +117,7 @@ export default {
     createDocWorkFlow: ({ createMultiple, createStatic }) =>
       R.ifElse((bol) => bol, createMultiple, createStatic),
   },
+
   mounted() {
     this.createDocWorkFlow(this.isMultiple);
     this.editor.on("update", handleUpdate(this));

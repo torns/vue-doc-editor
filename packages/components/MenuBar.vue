@@ -32,49 +32,6 @@ export default {
           title: "重做",
           action: () => this.editor.chain().focus().redo().run(),
         },
-
-        // {
-        //   icon: "eye-off-line",
-        //   title: "禁止读",
-        //   isActive: () => {
-        //     return this.editor.isActive("readdisable");
-        //   },
-        //   action: () => {
-        //     this.editor
-        //       .chain()
-        //       .focus()
-        //       .toggleReadDisable(Number(new Date()))
-        //       .run();
-        //   },
-        // },
-        // {
-        //   icon: "edit-circle-line",
-        //   title: "禁止写",
-        //   isActive: () => {
-        //     return this.editor.isActive("writedisable");
-        //   },
-        //   action: () => {
-        //     this.editor
-        //       .chain()
-        //       .focus()
-        //       .toggleWriteDisable(Number(new Date()))
-        //       .run();
-        //   },
-        // },
-        // {
-        //   icon: "edit-circle-line",
-        //   title: "允许写",
-        //   isActive: () => {
-        //     return this.editor.isActive("writeable");
-        //   },
-        //   action: () => {
-        //     this.editor
-        //       .chain()
-        //       .focus()
-        //       .toggleWriteAble(Number(new Date()))
-        //       .run();
-        //   },
-        // },
         {
           icon: "bold",
           title: "加粗",
