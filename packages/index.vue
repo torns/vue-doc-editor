@@ -131,7 +131,6 @@ export default {
   data() {
     return {
       focused: false,
-      editor: null,
       provider: null,
       indexdb: null,
       editor: null,
