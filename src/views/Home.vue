@@ -3,7 +3,6 @@
     <p style="width: 20%">
       {{ content }}
     </p>
-
     <div style="width: 80%">
       <DocEditor
         :content.sync="content"
@@ -25,7 +24,7 @@ export default {
     };
   },
   computed: {
-    multiple: (that) => ({
+    multiple: () => ({
       wsurl: "ws://liu.testoa3.pinnongjt.com:90",
       room: "xsdadsadas",
       user: `user-${new Date().getTime()}`,
